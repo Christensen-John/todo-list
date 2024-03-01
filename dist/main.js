@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("success"),document.body.appendChild(function(){const e=document.createElement("div");e.innerHTML="Not again!";const n=function(){console.log("In Item!");const e=document.createElement("div");return e.innerHTML="Hello new element!",e}();return e.appendChild(n),e}())})();
