@@ -8,7 +8,7 @@ export class CheckList {
   }
 
   addItem(item, status) {
-    this.#list.push(new CheckListItem(item, status));
+    this.list.push(new CheckListItem(item, status));
   }
 
   //remove checklist item

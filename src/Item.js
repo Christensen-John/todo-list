@@ -29,8 +29,13 @@ export class Item {
     this.#notes = notes;
   }
 
+  /**
+   *
+   * @param {string} item The description of the Checklist Item
+   * @param {boolean} status The checked status of the Checklist Item
+   */
   addCheckListItem(item, status) {
-    this.#checklist.addItem(item, status);
+    this.checklist.addItem(item, status);
   }
 
   //remove checklist item
