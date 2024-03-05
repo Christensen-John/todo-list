@@ -40,6 +40,10 @@ export class ListManager {
     });
     return list;
   }
+
+  static getAllListNames() {
+    return Object.keys(localStorage);
+  }
 }
 
 // export function createNewList(name) {
