@@ -1,3 +1,4 @@
+import { isThisMonth } from "date-fns";
 import { TodoItem } from "./TodoItem";
 
 export class TodoList {
@@ -7,6 +8,7 @@ export class TodoList {
   constructor(name) {
     this.name = name;
     this.list = [];
+    this.completed = [];
   }
 
   //Methods
@@ -20,7 +22,21 @@ export class TodoList {
    * @param {string} notes A list of notes to go with the Todo Item
    */
   addTodoItem(title, desc, dateCreated, dueDate, priority, notes, completed) {
-    this.list.push(
+    //Check to see if the task is completed, if it is, put it in the completed list.
+    if (completed) {
+      return this.completed.push(
+        new TodoItem(
+          title,
+          desc,
+          dateCreated,
+          dueDate,
+          priority,
+          notes,
+          completed
+        )
+      );
+    }
+    return this.list.push(
       new TodoItem(
         title,
         desc,
@@ -32,6 +48,17 @@ export class TodoList {
       )
     );
   }
+
+  //Sorting functions
+  dueDateSort(list = this.list) {}
+
+  reverseDueDateSort(list = this.list) {}
+
+  nameSort(list = this.list) {}
+
+  reverseNameSort(list = this.list) {}
+
+  prioritySort(list = this.list) {}
 
   //Accessors
   get fullList() {
