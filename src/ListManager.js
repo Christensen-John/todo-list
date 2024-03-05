@@ -2,18 +2,18 @@ import { TodoList } from "./TodoList";
 
 export class ListManager {
   static createNewList(name) {
-    if (localStorage[name]) {
-      throw new Error("List already exists");
+    if (!localStorage[name]) {
+      return new TodoList(name);
     }
-    return new TodoList(name);
+    throw new Error("List already exists");
   }
 
   static loadList(name) {
-    if (!localStorage[name]) {
-      throw new Error(`List: ${name} does not exist`);
+    if (localStorage[name]) {
+      let jsonList = JSON.parse(localStorage.getItem(name));
+      return ListManager.listFromJSON(jsonList);
     }
-    let jsonList = JSON.parse(localStorage.getItem(name));
-    return ListManager.listFromJSON(jsonList);
+    throw new Error(`List: ${name} does not exist`);
   }
 
   static saveList(list) {
