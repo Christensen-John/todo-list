@@ -44,6 +44,40 @@ export class ListManager {
   static getAllListNames() {
     return Object.keys(localStorage);
   }
+
+  static createFakeFill(numLists) {
+    // let numLists = Math.floor(Math.random() * 4) + 2;
+    let rnm = this.makeId;
+    for (let a = 0; a < numLists; a++) {
+      let tempList = new TodoList(this.makeId(10));
+      let numItemsInList = Math.floor(Math.random() * 10) + 3;
+      for (let b = 0; b < numItemsInList; b++) {
+        tempList.addTodoItem(
+          rnm(5),
+          rnm(15),
+          new Date(),
+          new Date(2023, 3, 5),
+          Math.random() < 0.5,
+          rnm(20),
+          false
+        );
+      }
+      ListManager.saveList(tempList);
+    }
+  }
+
+  static makeId(length) {
+    let result = "";
+    const characters =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const charsLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charsLength));
+      counter++;
+    }
+    return result;
+  }
 }
 
 // export function createNewList(name) {
