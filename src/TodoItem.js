@@ -1,5 +1,3 @@
-import { Checklist } from "./Checklist";
-
 export class TodoItem {
   key;
   title;
@@ -7,8 +5,8 @@ export class TodoItem {
   dateCreated;
   dueDate;
   priority;
-  checklist;
   notes;
+  completed;
 
   constructor(
     title,
@@ -16,7 +14,8 @@ export class TodoItem {
     created = new Date(),
     due,
     priority = false,
-    notes = ""
+    notes = "",
+    completed = false
   ) {
     //make a key that is the title with all non-alphnumeric characters removed
     this.key = title.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
@@ -25,21 +24,9 @@ export class TodoItem {
     this.dateCreated = created;
     this.dueDate = due;
     this.priority = priority;
-    this.checklist = new Checklist();
     this.notes = notes;
+    this.completed = completed;
   }
-
-  /**
-   *
-   * @param {string} item The description of the Checklist Item
-   * @param {boolean} status The checked status of the Checklist Item
-   */
-  addCheckListItem(item, status) {
-    this.checklist.addItem(item, status);
-  }
-
-  //remove checklist item
-  //TODO: Add remove checklist item method
 
   toString() {
     return `'key': ${this.key},
@@ -48,8 +35,8 @@ export class TodoItem {
       'dateCreated': ${this.dateCreated.toJSON()},
       'dueDate': ${this.dueDate.toJSON()},
       'priority': ${this.priority},
-      'checklist': ${this.checklist.toString()},
-      'notes': ${this.notes}`;
+      'notes': ${this.notes},
+      'completed': ${this.completed}`;
   }
 
   // ACCESSORS
@@ -61,8 +48,8 @@ export class TodoItem {
       dateCreated: this.dateCreated.toJSON(),
       dueDate: this.dueDate.toJSON(),
       priority: this.priority,
-      checklist: this.checklist,
       notes: this.notes,
+      completed: this.completed,
     };
   }
   get key() {
@@ -89,12 +76,12 @@ export class TodoItem {
     return this.priority;
   }
 
-  get checklist() {
-    return this.checklist;
-  }
-
   get notes() {
     return this.notes;
+  }
+
+  get completed() {
+    return this.completed;
   }
 
   //Mutators
@@ -122,11 +109,11 @@ export class TodoItem {
     this.priority = priority;
   }
 
-  set checklist(checklist) {
-    this.checklist = checklist;
-  }
-
   set notes(notes) {
     this.notes = notes;
+  }
+
+  set completed(complete) {
+    this.completed = complete;
   }
 }
