@@ -19,28 +19,18 @@ export class TodoList {
    * @param {boolean} priority A marker for if the item is of high priority
    * @param {string} notes A list of notes to go with the Todo Item
    */
-  addTodoItem(
-    title,
-    desc,
-    dateCreated,
-    dueDate,
-    priority,
-    // checklist,
-    notes
-  ) {
+  addTodoItem(title, desc, dateCreated, dueDate, priority, notes, completed) {
     this.list.push(
-      new TodoItem(title, desc, dateCreated, dueDate, priority, notes)
+      new TodoItem(
+        title,
+        desc,
+        dateCreated,
+        dueDate,
+        priority,
+        notes,
+        completed
+      )
     );
-  }
-
-  toString() {
-    //Attempt #2
-    return this.list.toString();
-    //Attempt #1
-    // let stringData = "";
-    // this.items.forEach((item) => {
-    //   stringData.concat(stringData, item.toString());
-    // });
   }
 
   //Accessors
