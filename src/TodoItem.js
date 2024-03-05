@@ -1,6 +1,6 @@
 import { Checklist } from "./Checklist";
 
-export class Item {
+export class TodoItem {
   #key;
   #title;
   #description;
@@ -42,19 +42,29 @@ export class Item {
   //TODO: Add remove checklist item method
 
   toString() {
-    return `{
-      'key': ${this.key},
+    return `'key': ${this.key},
       'title': ${this.title},
       'description': ${this.description},
       'dateCreated': ${this.dateCreated.toJSON()},
       'dueDate': ${this.dueDate.toJSON()},
       'priority': ${this.priority},
       'checklist': ${this.checklist.toString()},
-      'notes': ${this.notes}
-    }`;
+      'notes': ${this.notes}`;
   }
 
   // ACCESSORS
+  get item() {
+    return {
+      key: this.key,
+      title: this.title,
+      description: this.description,
+      dateCreated: this.dateCreated.toJSON(),
+      dueDate: this.dueDate.toJSON(),
+      priority: this.priority,
+      checklist: this.checklist,
+      notes: this.notes,
+    };
+  }
   get key() {
     return this.#key;
   }
