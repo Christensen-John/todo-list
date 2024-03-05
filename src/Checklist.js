@@ -1,10 +1,10 @@
 import { CheckListItem } from "./CheckListItem";
 
-export class CheckList {
-  #list;
+export class Checklist {
+  list;
 
   constructor() {
-    this.#list = [];
+    this.list = [];
   }
 
   addItem(item, status) {
@@ -15,10 +15,12 @@ export class CheckList {
   //TODO: Add remove checklist item method
 
   toString() {
-    let stringedItems = this.list.toString();
+    //Attempt #4
+    return this.list.toString();
 
     //Attempt #3
-    return `[${stringedItems}]`;
+    // let stringedItems = this.list.toString();
+    // return `${stringedItems}]`;
 
     //Attempt #2
     // return stringedItems.concat('[', stringedItems, "]");
@@ -38,11 +40,14 @@ export class CheckList {
 
   //Accessors
   get list() {
-    return this.#list;
+    return this.list;
   }
 
   //Mutators
+  /**
+   * @param {Object} list A list of Checklist items
+   */
   set list(list) {
-    this.#list = list;
+    this.list = list;
   }
 }

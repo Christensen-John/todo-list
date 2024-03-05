@@ -1,17 +1,17 @@
-import { Item } from "./Item";
+import { TodoItem } from "./TodoItem";
 
 export class TodoList {
-  #name;
-  #items;
+  name;
+  list;
 
   constructor(name) {
-    this.#name = name;
-    this.#items = [];
+    this.name = name;
+    this.list = [];
   }
 
   //Methods
   /**
-   * 
+   *
    * @param {string} title The title/name of the Todo Item
    * @param {string} desc A description of the Todo Item
    * @param {Date} dateCreated A date object describing when the object was created
@@ -28,31 +28,43 @@ export class TodoList {
     // checklist,
     notes
   ) {
-    this.items.push() = new Item(title, desc, dateCreated, dueDate, priority, notes);
+    this.list.push(
+      new TodoItem(title, desc, dateCreated, dueDate, priority, notes)
+    );
   }
 
   toString() {
-    let stringData = "";
-    this.items.forEach((item) => {
-      stringData.concat(stringData, item.toString());
-    });
+    //Attempt #2
+    return this.list.toString();
+    //Attempt #1
+    // let stringData = "";
+    // this.items.forEach((item) => {
+    //   stringData.concat(stringData, item.toString());
+    // });
   }
 
   //Accessors
-  get name() {
-    return this.#name;
+  get fullList() {
+    return {
+      name: this.name,
+      items: this.list,
+    };
   }
 
-  get items() {
-    return this.#items;
+  get name() {
+    return this.name;
+  }
+
+  get list() {
+    return this.list;
   }
 
   //Mutators
   set name(name) {
-    this.#name = name;
+    this.name = name;
   }
 
-  set items(items) {
-    this.#items = items;
+  set list(items) {
+    this.list = items;
   }
 }
