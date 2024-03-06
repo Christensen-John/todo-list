@@ -4,6 +4,7 @@ import { TodoItem } from "./TodoItem";
 export class TodoList {
   name;
   list;
+  completed;
 
   constructor(name) {
     this.name = name;
@@ -48,17 +49,6 @@ export class TodoList {
       )
     );
   }
-
-  //Sorting functions
-  dueDateSort(list = this.list) {}
-
-  reverseDueDateSort(list = this.list) {}
-
-  nameSort(list = this.list) {}
-
-  reverseNameSort(list = this.list) {}
-
-  prioritySort(list = this.list) {}
 
   //Accessors
   get fullList() {
