@@ -52,11 +52,14 @@ export class ListManager {
       let tempList = new TodoList(this.makeId(10));
       let numItemsInList = Math.floor(Math.random() * 10) + 3;
       for (let b = 0; b < numItemsInList; b++) {
+        let newYear = Math.floor(Math.random() * 50) + 2000;
+        let newDay = Math.floor(Math.random() * 31);
+        let newMonth = Math.floor(Math.random() * 11);
         tempList.addTodoItem(
           rnm(5),
           rnm(15),
-          new Date(),
-          new Date(2023, 3, 5),
+          new Date(newYear, newMonth, newDay),
+          new Date(newYear + 1, 3, 2),
           Math.random() < 0.5,
           rnm(20),
           false
