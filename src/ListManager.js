@@ -55,11 +55,14 @@ export class ListManager {
         let newYear = Math.floor(Math.random() * 50) + 2000;
         let newDay = Math.floor(Math.random() * 31);
         let newMonth = Math.floor(Math.random() * 11);
+        let newDueYear = newYear + Math.floor(Math.random() * 50) + 1;
+        let newDueDay = Math.floor(Math.random() * 31);
+        let newDueMonth = Math.floor(Math.random() * 11);
         tempList.addTodoItem(
           rnm(5),
           rnm(15),
           new Date(newYear, newMonth, newDay),
-          new Date(newYear + 1, 3, 2),
+          new Date(newDueYear, newDueMonth, newDueDay),
           Math.random() < 0.5,
           rnm(20),
           false
