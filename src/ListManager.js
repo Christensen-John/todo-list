@@ -16,6 +16,10 @@ export class ListManager {
     throw new Error(`List: ${name} does not exist`);
   }
 
+  /**
+   *
+   * @param {TodoList} list the list to be saved
+   */
   static saveList(list) {
     let jsonList = JSON.stringify(list);
     if (localStorage[list.name]) {
