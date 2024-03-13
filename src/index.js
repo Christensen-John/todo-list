@@ -1,6 +1,7 @@
-// import { TodoList } from "./TodoList";
-// import { saveList, createNewList } from "./ListManager";
 import { ListManager } from "./ListManager";
+import { format } from "date-fns";
+
+console.log("Watch test");
 
 function pageSetup() {
   const nav = document.querySelector("nav");
@@ -23,17 +24,99 @@ function listNavigation() {
   return navEl;
 }
 
+// Takes a specific list and displays it in the main content container
+function todoDisplay(list) {
+  const listEl = 
+}
+
+function redrawListContent() {
+  //TODO: Complete the redrawing of the main window
+}
+
+function redrawNav() {
+  const nav = document.querySelector("nav");
+  const newListNav = listNavigation();
+  nav.innerHTML = "";
+  nav.appendChild(newListNav);
+  setupNavListeners();
+}
+
+/**
+ *
+ * @param {TodoItem} item The TodoItem to display
+ * @param {string} listname The name of the TodoList that contains the item
+ * Creates an HTMLElement list item that will be used to display the TodoItem
+ */
+function createTodoItemElement(item, listname) {
+  //Create a list item that will contain a todo item
+  const listEl = document.createElement("li");
+  listEl.classList.add("todoItem");
+  listEl.id = `${item.title}`;
+
+  //Label to know which list the item has originated
+  const listLabelEl = document.createElement("p");
+  listLabelEl.innerHTML = listname;
+  listLabelEl.classList.add("listLabel");
+
+  //Todo title/action item
+  const itemTitle = document.createElement("h1");
+  itemTitle.innerHTML = item.title;
+  itemTitle.classList.add("itemTitle");
+
+  //Todo due date
+  const dueDate = document.createElement("p");
+  dueDate.classList.add("item-due-date");
+  dueDate.innerHTML = format(item.dueDate, "MMM d");
+
+  //Add subElements to listEl
+  listEl.append(itemTitle, listLabelEl, dueDate);
+}
+
+// /**
+//  *
+//  * @param {HTMLELement} todoElement The HTMLElement containing a TodoItem
+//  * The priority is stored as an integer, either 0 or 1. Using some basic maths
+//  * the number can be easily toggled. 0 and 1 map to false and true booleans
+//  * respectively.
+//  * //TODO: This might need to have a return value that replaces the old element.
+//  *
+//  */
+// function togglePriority(todoElement) {
+//   let priority = Number(todoElement.dataset.priority);
+//   //Toggles 1 to 0 and 0 to 1;
+//   todoElement.dataset.priority = priority * -1 + 1;
+// }
+
+// function createTodoListElement(listname) {
+//   const listEl = document.createElement('ul');
+//   let list = ListManager.loadList(listname);
+//   list.list.forEach(listItem => {
+
+//   });
+// }
+
 function setupNavListeners() {
   const navList = document.querySelectorAll("nav li");
   navList.forEach((liEl) => {
     liEl.addEventListener("click", (event) => {
       let listName = event.target.data;
-      console.log(ListManager.loadList(listName));
     });
   });
 }
 
-// ListManager.createFakeFill(5);
+function testSort(listName) {
+  let todoList = ListManager.loadList(listName);
+  console.log(todoList.sortList("title"));
+  ListManager.saveList(todoList);
+
+  //The lists have changed, redraw them;
+  // redrawList();
+}
+
+//TODO: Testing purposes, fill storage randomly
+if (localStorage.length === 0) {
+  ListManager.createFakeFill(5);
+}
 pageSetup();
 // localStorage.clear();
 
